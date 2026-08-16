@@ -1,15 +1,32 @@
 {
   "name": "ianhobbs/audio-block",
-  "description": "An extended audio player block for Kirby",
+  "description": "An extended audio player block for Kirby CMS with poster image, title, subtitle, description and color options",
   "type": "kirby-plugin",
-  "version": "1.0.0",
   "license": "MIT",
+  "keywords": [
+    "kirby",
+    "kirby-cms",
+    "kirby-plugin",
+    "audio",
+    "audio-player",
+    "block"
+  ],
+  "homepage": "https://github.com/ianhobbs/kirby-audio-block",
   "authors": [
     {
-      "name": "IanHobbs",
+      "name": "Ian Hobbs",
       "email": "ian@ianhobbs.net"
     }
   ],
-  "minimum-stability": "beta",
-  "require": {}
+  "support": {
+    "issues": "https://github.com/ianhobbs/kirby-audio-block/issues",
+    "source": "https://github.com/ianhobbs/kirby-audio-block"
+  },
+  "require": {
+    "php": ">=8.0",
+    "getkirby/composer-installer": "^1.2"
+  },
+  "extra": {
+    "installer-name": "ianhobbs-audio-block"
+  }
 }

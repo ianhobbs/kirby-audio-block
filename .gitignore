@@ -14,6 +14,9 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+# Local working notes
+merg-plugs.md
+
 # Note: index.js and index.css are kirbyup build output,
 # but they are committed on purpose — Kirby loads them directly
 # and users installing the plugin should not need to run a build.

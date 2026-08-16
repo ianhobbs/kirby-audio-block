@@ -23,7 +23,7 @@ Copy this folder to `site/plugins/ianhobbs-audio-block`.
 ### Git submodule
 
 ```bash
-git submodule add <repository-url> site/plugins/ianhobbs-audio-block
+git submodule add https://github.com/ianhobbs/kirby-audio-block.git site/plugins/ianhobbs-audio-block
 ```
 
 ### Composer
