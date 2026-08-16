@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+vendor/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Note: index.js and index.css are kirbyup build output,
+# but they are committed on purpose — Kirby loads them directly
+# and users installing the plugin should not need to run a build.

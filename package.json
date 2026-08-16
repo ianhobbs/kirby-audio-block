@@ -1,0 +1,12 @@
+{
+  "name": "ianhobbs-audio-block",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx -y kirbyup src/index.js --watch",
+    "build": "npx -y kirbyup src/index.js"
+  },
+  "refs": {
+    "_comment": "https://getkirby.com/docs/guide/page-builder/complex-custom-block#using-the-new-block-in-the-blocks-field"
+  }
+}

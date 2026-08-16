@@ -1,0 +1,15 @@
+title: Audio
+
+accept:
+  extension: mp3
+
+fields:
+  author:
+    label: Author
+    type: text
+    width: 1/4
+  date:
+    label: Date
+    type: date
+    display: DD.MM.YYYY
+    width: 1/2

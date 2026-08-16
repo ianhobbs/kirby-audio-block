@@ -1,0 +1,73 @@
+/* Front-end styles for the audio-player block.
+   Include via: <?= css('media/plugins/ianhobbs/audio-block/audio-player.css') ?>
+
+   Every visual value reads a `--ap-*` design token with a built-in
+   fallback, so the block works with zero configuration. Define the
+   tokens in your own stylesheet (e.g. on :root) to customise spacing,
+   text sizes and colours — see the README for the full token list.
+
+   Colour precedence: per-block Panel colour picker (--colBG / --colTX)
+   → site token (--ap-color-bg / --ap-color-text) → built-in default. */
+
+.audio-wrapper {
+  display: flex;
+  overflow: hidden;
+  background: var(--colBG, var(--ap-color-bg, #333));
+  border-radius: var(--ap-radius, 0.75rem);
+  box-shadow: var(
+    --ap-shadow,
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1)
+  );
+}
+
+.audio-poster {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.audio-poster img,
+.audio-poster svg {
+  display: block;
+  width: var(--ap-poster-size, 12rem);
+  height: var(--ap-poster-size, 12rem);
+  object-fit: cover;
+}
+
+.audio-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: var(--ap-gap, 0.5rem);
+  padding: var(--ap-pad, 0.5rem);
+  color: var(--colTX, var(--ap-color-text, #fff));
+}
+
+@media (min-width: 768px) {
+  .audio-info {
+    padding: var(--ap-pad-md, 1rem);
+  }
+}
+
+.audio-title,
+.audio-subtitle {
+  margin: 0;
+  font-size: var(--ap-title-size, 1.5rem);
+  font-weight: var(--ap-title-weight, 400);
+}
+
+.audio-subtitle {
+  margin-bottom: var(--ap-subtitle-gap, 1rem);
+  font-size: var(--ap-subtitle-size, var(--ap-title-size, 1.5rem));
+  opacity: var(--ap-subtitle-opacity, 0.6);
+}
+
+.audio-description {
+  font-size: var(--ap-description-size, 1rem);
+  line-height: var(--ap-line-height, 1.5);
+}
+
+.audio-element {
+  width: 100%;
+  height: var(--ap-element-height, 2rem);
+  margin-top: var(--ap-element-gap, 2rem);
+}
