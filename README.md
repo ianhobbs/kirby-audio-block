@@ -131,7 +131,8 @@ npm run build  # production build
 
 ## Requirements
 
-- Kirby 4+ (Panel preview uses `k-frame`)
+- Kirby 5
+- PHP 8.2+
 
 ## Publishing statement
 

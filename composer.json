@@ -23,8 +23,11 @@
     "source": "https://github.com/ianhobbs/kirby-audio-block"
   },
   "require": {
-    "php": ">=8.0",
+    "php": ">=8.2",
     "getkirby/composer-installer": "^1.2"
+  },
+  "conflict": {
+    "getkirby/cms": "<5.0.0 || >=6.0.0"
   },
   "extra": {
     "installer-name": "ianhobbs-audio-block"
