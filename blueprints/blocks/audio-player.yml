@@ -12,7 +12,7 @@ tabs:
         width: 1/2
       source:
         type: files
-        query: page.audio.template('audio')
+        query: page.files.template('audio')
         uploads: audio
         multiple: false
         width: 1/2

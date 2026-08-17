@@ -1,7 +1,15 @@
 title: Audio
 
 accept:
-  extension: mp3
+  extension:
+    - mp3
+    - m4a
+    - aac
+    - wav
+    - ogg
+    - flac
+    - aif
+    - aiff
 
 fields:
   author:

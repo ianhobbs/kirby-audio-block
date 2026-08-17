@@ -8,11 +8,14 @@ Registered as the block type `audio-player`, so it will not conflict with any si
 
 ## Features
 
-- Audio file (`mp3`) with poster image (`jpg`, `jpeg`, `png`, `webp`, `svg`)
+- Audio file (`mp3`, `m4a`, `aac`, `wav`, `ogg`, `flac`, `aif`, `aiff`) with poster image (`jpg`, `jpeg`, `png`, `webp`, `svg`)
 - Title, subtitle, and inline writer description (bold/italic)
 - Background and text color pickers
 - Settings tab: show controls, autoplay
 - Live Panel preview with inline editing (double-click to edit text in place)
+
+Accepted filetypes ;
+mp3, m4a, aac, wav, ogg, flac, aif, aiff.
 
 ## Installation
 
