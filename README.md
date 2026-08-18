@@ -78,7 +78,7 @@ To include the shipped stylesheet manually instead, turn the option off and link
 
 Use the plugin asset URL rather than a hardcoded `media/plugins/...` path — Kirby 5 publishes plugin assets under a cache-busting hash, and the un-hashed path is deprecated.
 
-You can also skip the shipped stylesheet entirely (`'ianhobbs.audio-block.css' => false`) and style the block classes (`audio-wrapper`, `audio-poster`, `audio-info`, `audio-title`, `audio-subtitle`, `audio-description`, `audio-element`) yourself, or adapt the snippet at `snippets/blocks/audio-player.php`.
+You can also skip the shipped stylesheet entirely (`'ianhobbs.audio-block.css' => false`) and style the block classes (`audio-wrapper`, `audio-poster`, `audio-info`, `audio-title`, `audio-subtitle`, `audio-description`, `audio-playbar`) yourself, or adapt the snippet at `snippets/blocks/audio-player.php`.
 
 If your site uses Kirby's page cache, flush it after updating the plugin — the asset URL carries a hash of the stylesheet's modification time, and cached pages keep the old one.
 
@@ -96,12 +96,19 @@ To customise, define the tokens in your site's CSS — in a plain stylesheet, or
   --ap-color-bg: #1a1a2e;
   --ap-color-text: #f4f4f4;
 
-  /* spacing */
-  --ap-radius: 1rem;
+  /* spacing — plain values, or your own scale */
+  --ap-radius: var(--spacing-4-m);
   --ap-gap: 1rem;
   --ap-pad: 0.75rem;
   --ap-pad-md: 1.5rem;
   --ap-poster-size: 10rem;
+  --ap-playbar-gap: var(--spacing-2);
+  --ap-playbar-height: var(--spacing-5-l);
+  --ap-playbar-radius: 0.5rem;
+
+  /* playbar */
+  --ap-playbar-bg: #1a1a2e;
+  --ap-playbar-scheme: dark;
 
   /* text */
   --ap-title-size: 1.75rem;
@@ -117,7 +124,7 @@ To customise, define the tokens in your site's CSS — in a plain stylesheet, or
 | `--ap-color-bg` | `#333` | Block background colour |
 | `--ap-color-text` | `#fff` | Text colour |
 | `--ap-shadow` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | Drop shadow |
-| `--ap-radius` | `0.75rem` | Corner radius |
+| `--ap-radius` | `var(--spacing-4-m, 1.75rem)` | Corner radius |
 | `--ap-poster-size` | `12rem` | Poster width and height |
 | `--ap-gap` | `0.5rem` | Gap between poster and text area |
 | `--ap-pad` | `0.5rem` | Text-area padding (small screens) |
@@ -129,8 +136,23 @@ To customise, define the tokens in your site's CSS — in a plain stylesheet, or
 | `--ap-subtitle-opacity` | `0.6` | Subtitle opacity |
 | `--ap-description-size` | `1rem` | Description font size |
 | `--ap-line-height` | `1.5` | Description line height |
-| `--ap-element-gap` | `2rem` | Space above the audio player |
-| `--ap-element-height` | `2rem` | Audio player height |
+| `--ap-playbar-gap` | `var(--spacing-2, 2rem)` | Space above the audio player |
+| `--ap-playbar-height` | `var(--spacing-5-l, 2rem)` | Audio player height |
+| `--ap-playbar-radius` | `0.5rem` | Playbar corner radius |
+| `--ap-playbar-bg` | `Field` | Playbar background colour |
+| `--ap-playbar-scheme` | `normal` | `color-scheme` of the playbar (`dark` for light icons) |
+
+Three of the spacing tokens resolve through a site spacing scale before falling back to a literal: `--ap-radius` → `--spacing-4-m` → `1.75rem`, `--ap-playbar-gap` → `--spacing-2` → `2rem`, `--ap-playbar-height` → `--spacing-5-l` → `2rem`. Sites with a `--spacing-*` scale pick it up automatically; sites without one get the literal.
+
+### Styling the playbar
+
+The playbar is the browser's own `<audio>` control, and its interface lives in a user-agent shadow DOM. That sets hard limits on what any stylesheet can reach:
+
+- **Corner radius** (`--ap-playbar-radius`) applies to the element box, and is passed into the control via `::-webkit-media-controls-enclosure`.
+- **Background** (`--ap-playbar-bg`) is honoured on the control panel in Chromium and Safari. Firefox exposes no pseudo-elements for the control, so it keeps its own bar colour there.
+- **Icon, scrubber, and timestamp colours are not stylable in any browser.** The one lever is `color-scheme`: set `--ap-playbar-scheme: dark` to get the light-icon variant of the control, which is what you want alongside a dark `--ap-playbar-bg`. Without it, a dark bar gets dark icons.
+
+The `--ap-playbar-bg` default is the CSS system colour `Field` — the standard input-surface colour, light or dark according to the effective `color-scheme`. That keeps the out-of-the-box appearance close to the unstyled control while still being overridable.
 
 ### Colour precedence
 

@@ -23,10 +23,10 @@ if ($block->textcolor()->isNotEmpty()) {
   <div class="audio-info">
     <h1 class="audio-title"><?= $block->title()->html() ?></h1>
     <h2 class="audio-subtitle"><?= $block->subtitle()->html() ?></h2>
-    <div class="audio-description">
+    <p class="audio-description text-base">
       <?= $block->description() ?>
-    </div>
-    <audio class="audio-element"
+    </p>
+    <audio class="audio-playbar"
       preload="metadata"
       <?= $block->controls()->isTrue() ? 'controls' : '' ?>
       <?= $block->autoplay()->isTrue() ? 'autoplay' : '' ?>

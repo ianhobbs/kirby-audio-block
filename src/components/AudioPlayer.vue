@@ -37,7 +37,7 @@
           class="k-block-type-audio-player-description"
           @input="update({ description: $event })"
         />
-        <audio class="k-block-type-audio-player-element" controls>
+        <audio class="k-block-type-audio-player-playbar" controls>
           <source :src="source.url" :type="mime" />
         </audio>
       </div>
@@ -99,7 +99,7 @@ export default {
 .k-block-type-audio-player-description {
   line-height: 1.5;
 }
-.k-block-type-audio-player-element {
+.k-block-type-audio-player-playbar {
   margin-top: 2rem;
   height: 2rem;
 }
