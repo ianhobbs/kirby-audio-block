@@ -57,13 +57,32 @@ Render blocks in your template as usual:
 
 ### Front-end styles
 
-The plugin ships a stylesheet at `assets/audio-player.css`. Include it in your template `<head>`:
+The plugin ships a stylesheet at `assets/audio-player.css` and loads it **automatically** — no template change required. It is injected before `</head>` only on pages whose rendered HTML contains the block (`.audio-wrapper`), and skipped if the stylesheet is already linked in the page.
+
+Control this with the `ianhobbs.audio-block.css` option in `site/config/config.php`:
 
 ```php
-<?= css('media/plugins/ianhobbs/audio-block/audio-player.css') ?>
+return [
+  // true (default) – load the shipped stylesheet automatically
+  // false          – load nothing, style the block yourself
+  // string         – URL of your own stylesheet to load instead
+  'ianhobbs.audio-block.css' => true,
+];
 ```
 
-You can also skip the shipped stylesheet and style the block classes (`audio-wrapper`, `audio-poster`, `audio-info`, `audio-title`, `audio-subtitle`, `audio-description`, `audio-element`) yourself, or adapt the snippet at `snippets/blocks/audio-player.php`.
+To include the shipped stylesheet manually instead, turn the option off and link the published asset in your `<head>` snippet:
+
+```php
+<?= css($kirby->plugin('ianhobbs/audio-block')->asset('audio-player.css')->url()) ?>
+```
+
+Use the plugin asset URL rather than a hardcoded `media/plugins/...` path — Kirby 5 publishes plugin assets under a cache-busting hash, and the un-hashed path is deprecated.
+
+You can also skip the shipped stylesheet entirely (`'ianhobbs.audio-block.css' => false`) and style the block classes (`audio-wrapper`, `audio-poster`, `audio-info`, `audio-title`, `audio-subtitle`, `audio-description`, `audio-element`) yourself, or adapt the snippet at `snippets/blocks/audio-player.php`.
+
+If your site uses Kirby's page cache, flush it after updating the plugin — the asset URL carries a hash of the stylesheet's modification time, and cached pages keep the old one.
+
+Note: auto-injection detects the block by the `audio-wrapper` class. If you override the snippet in `site/snippets/blocks/audio-player.php` and drop that class, set the option to `false` and load your CSS yourself.
 
 ## Customisation with design tokens
 

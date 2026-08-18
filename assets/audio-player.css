@@ -1,5 +1,7 @@
 /* Front-end styles for the audio-player block.
-   Include via: <?= css('media/plugins/ianhobbs/audio-block/audio-player.css') ?>
+   Loaded automatically on pages that render the block. Disable with
+   `ianhobbs.audio-block.css => false` in config and include it yourself:
+   <?= css($kirby->plugin('ianhobbs/audio-block')->asset('audio-player.css')->url()) ?>
 
    Every visual value reads a `--ap-*` design token with a built-in
    fallback, so the block works with zero configuration. Define the
@@ -13,7 +15,7 @@
   display: flex;
   overflow: hidden;
   background: var(--colBG, var(--ap-color-bg, #333));
-  border-radius: var(--ap-radius, 0.75rem);
+  border-radius: var(--ap-radius, 1.75rem);
   box-shadow: var(
     --ap-shadow,
     0 10px 15px -3px rgb(0 0 0 / 0.1),
