@@ -171,6 +171,7 @@ To modify the Panel preview:
 ```bash
 npm run dev    # watch mode
 npm run build  # production build
+
 ```
 
 ## Requirements
