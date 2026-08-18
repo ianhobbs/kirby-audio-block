@@ -60,22 +60,25 @@
   }
 }
 
-.audio-title,
-.audio-subtitle {
+h1.audio-title,
+h2.audio-subtitle {
   margin: 0;
   font-size: var(--ap-title-size, 1.5rem);
   font-weight: var(--ap-title-weight, 400);
+  color: var(--colTX, var(--ap-color-text, #fff));
+
 }
 
 .audio-subtitle {
   margin-bottom: var(--ap-subtitle-gap, 1rem);
   font-size: var(--ap-subtitle-size, var(--ap-title-size, 1.5rem));
   opacity: var(--ap-subtitle-opacity, 0.6);
+  color: var(--colTX, var(--ap-color-text, #fff));
 }
 
 .audio-description {
   font-size: var(--ap-description-size, 1rem);
-  line-height: var(--ap-line-height, 1.5);
+  line-height: var(--ap-line-height, 1.4);
 }
 
 .audio-playbar {
