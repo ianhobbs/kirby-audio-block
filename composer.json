@@ -27,8 +27,7 @@
     "getkirby/composer-installer": "^1.2"
   },
   "conflict": {
-    "getkirby/cms": "<5.0.0 || >=6.0.0",
-    "ianhobbs/song-block": "*"
+    "getkirby/cms": "<5.0.0 || >=6.0.0"
   },
   "extra": {
     "installer-name": "ianhobbs-audio-block"

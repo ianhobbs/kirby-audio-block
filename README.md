@@ -175,19 +175,6 @@ The `--ap-playbar-bg` default is the CSS system colour `Field` — the standard 
 
 The Panel colour fields have no preset value, so freshly added blocks follow your site tokens until an editor explicitly picks a colour.
 
-## Migrating from ianhobbs/song-block
-
-`ianhobbs/song-block` is deprecated. This plugin registers the block type `song` as a legacy alias with the same fields (poster, source, title, subtitle, description, colours, controls, autoplay), so existing content keeps working without edits:
-
-```bash
-composer remove ianhobbs/song-block
-composer require ianhobbs/audio-block
-```
-
-The two packages conflict on purpose, because both register `song`. If you installed song-block manually, delete `site/plugins/song-block` instead.
-
-`song` blocks render with this plugin's snippet and `audio-*` classes. If your site styled the old `song-*` classes, keep your own `site/snippets/blocks/song.php` – site snippets and blueprints override plugin ones. New blocks should use `audio-player`.
-
 ## Development
 
 The Panel bundle (`index.js`, `index.css`) is built with [kirbyup](https://github.com/johannschopplich/kirbyup) and committed to the repository — no build step is needed to use the plugin.
@@ -199,6 +186,11 @@ npm run dev    # watch mode
 npm run build  # production build
 
 ```
+
+## Changelog
+
+- **2.1.1** – Removed the `song` block alias and the conflict with `ianhobbs/song-block` added in 2.1.0. This plugin registers only `audio-player`; `song` blocks belong to [ianhobbs/song-block](https://github.com/ianhobbs/kirby-song-block), and both plugins can be installed side by side.
+- **2.1.0** – Poster layout option (beside text or background), `--ap-bg-position` token, colour sanitising.
 
 ## Requirements
 

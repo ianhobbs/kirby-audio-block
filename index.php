@@ -1,7 +1,6 @@
 <?php
 
 use Kirby\Cms\App;
-use Kirby\Data\Data;
 
 Kirby::plugin('ianhobbs/audio-block', [
   'options' => [
@@ -17,18 +16,11 @@ Kirby::plugin('ianhobbs/audio-block', [
   ],
   'blueprints' => [
     'blocks/audio-player' => __DIR__ . '/blueprints/blocks/audio-player.yml',
-    // legacy alias: content created with ianhobbs/song-block stores the
-    // block type `song` with the same fields
-    'blocks/song'         => fn () => array_merge(
-      Data::read(__DIR__ . '/blueprints/blocks/audio-player.yml'),
-      ['name' => 'Song']
-    ),
     'files/audio'         => __DIR__ . '/blueprints/files/audio.yml',
     'files/poster'        => __DIR__ . '/blueprints/files/poster.yml',
   ],
   'snippets' => [
     'blocks/audio-player' => __DIR__ . '/snippets/blocks/audio-player.php',
-    'blocks/song'         => __DIR__ . '/snippets/blocks/audio-player.php',
   ],
   'hooks' => [
     'page.render:after' => function (string $contentType, string $html) {
