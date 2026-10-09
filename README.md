@@ -11,7 +11,8 @@ Registered as the block type `audio-player`, so it will not conflict with any si
 - Audio file (`mp3`, `m4a`, `aac`, `wav`, `ogg`, `flac`, `aif`, `aiff`) with poster image (`jpg`, `jpeg`, `png`, `webp`, `svg`)
 - Title, subtitle, and inline writer description (bold/italic)
 - Background and text color pickers
-- Settings tab: show controls, autoplay
+- Poster layout: beside the text, or as a full background behind the player
+- Settings tab: poster layout, show controls, autoplay
 - Live Panel preview with inline editing (double-click to edit text in place)
 
 Accepted filetypes ;
@@ -54,6 +55,17 @@ Render blocks in your template as usual:
 ```php
 <?= $page->text()->toBlocks() ?>
 ```
+
+### Poster layout
+
+The Settings tab has a **Poster layout** toggle:
+
+- `side` (default) – square poster beside the text.
+- `background` – the poster covers the whole block behind the text and playbar. The wrapper gets the extra class `audio-wrapper--background`; position the image with the `--ap-bg-position` token.
+
+Resizable images are scaled to 1200px wide for the background; SVG posters are used as-is. The Panel preview follows the same setting.
+
+To make `background` the default on your site, override the blueprint in `site/blueprints/blocks/audio-player.yml` and set `default: background` on the `layout` field. Blocks saved before the option existed have no stored value and follow the blueprint default.
 
 ### Front-end styles
 
@@ -126,6 +138,7 @@ To customise, define the tokens in your site's CSS — in a plain stylesheet, or
 | `--ap-shadow` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` | Drop shadow |
 | `--ap-radius` | `var(--spacing-4-m, 1.75rem)` | Corner radius |
 | `--ap-poster-size` | `12rem` | Poster width and height |
+| `--ap-bg-position` | `top right` | Poster position in the `background` layout |
 | `--ap-gap` | `0.5rem` | Gap between poster and text area |
 | `--ap-pad` | `0.5rem` | Text-area padding (small screens) |
 | `--ap-pad-md` | `1rem` | Text-area padding (≥ 768px) |
@@ -161,6 +174,19 @@ The `--ap-playbar-bg` default is the CSS system colour `Field` — the standard 
 3. **Built-in defaults** — `#333` background, `#fff` text.
 
 The Panel colour fields have no preset value, so freshly added blocks follow your site tokens until an editor explicitly picks a colour.
+
+## Migrating from ianhobbs/song-block
+
+`ianhobbs/song-block` is deprecated. This plugin registers the block type `song` as a legacy alias with the same fields (poster, source, title, subtitle, description, colours, controls, autoplay), so existing content keeps working without edits:
+
+```bash
+composer remove ianhobbs/song-block
+composer require ianhobbs/audio-block
+```
+
+The two packages conflict on purpose, because both register `song`. If you installed song-block manually, delete `site/plugins/song-block` instead.
+
+`song` blocks render with this plugin's snippet and `audio-*` classes. If your site styled the old `song-*` classes, keep your own `site/snippets/blocks/song.php` – site snippets and blueprints override plugin ones. New blocks should use `audio-player`.
 
 ## Development
 

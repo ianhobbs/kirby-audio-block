@@ -33,6 +33,17 @@
   );
 }
 
+/* Poster layout "background": the poster fills the block behind the text */
+.audio-wrapper--background {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: var(--ap-bg-position, top right);
+}
+
+.audio-wrapper--background .audio-info {
+  margin-left: 0;
+}
+
 .audio-poster {
   flex-shrink: 0;
   margin: 0;

@@ -46,6 +46,14 @@ tabs:
   settings:
     label: Settings
     fields:
+      layout:
+        type: toggles
+        label: Poster layout
+        options:
+          side: Beside text
+          background: Background
+        default: side
+        help: Background stretches the poster behind the player.
       controls:
         type: toggle
         text: Show controls?
