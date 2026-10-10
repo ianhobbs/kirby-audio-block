@@ -41,9 +41,25 @@
           class="k-block-type-audio-player-description"
           @input="update({ description: $event })"
         />
-        <audio class="k-block-type-audio-player-playbar" controls>
+        <audio
+          ref="audio"
+          class="k-block-type-audio-player-playbar"
+          controls
+          @play="playing = true"
+          @pause="playing = false"
+        >
           <source :src="source.url" :type="mime" />
         </audio>
+        <!-- replaces the native controls when the column is too narrow -->
+        <div class="k-block-type-audio-player-compact">
+          <k-button
+            :icon="playing ? 'audio-pause' : 'play'"
+            :title="playing ? 'Pause' : 'Play'"
+            size="sm"
+            variant="filled"
+            @click.stop="toggle"
+          />
+        </div>
       </div>
     </div>
   </k-block-figure>
@@ -54,6 +70,7 @@ export default {
   data() {
     return {
       mime: null,
+      playing: false,
     };
   },
   computed: {
@@ -77,6 +94,17 @@ export default {
         color: this.content.textcolor || null,
         backgroundImage: this.isBackground ? `url("${this.poster.url}")` : null,
       };
+    },
+  },
+  methods: {
+    toggle() {
+      const audio = this.$refs.audio;
+
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
     },
   },
   watch: {
@@ -109,6 +137,7 @@ export default {
 .k-block-type-audio-player-info {
   flex: 1;
   min-width: 0;
+  container: audio-player-info / inline-size;
 }
 .k-block-type-audio-player-poster {
   width: 12rem;
@@ -130,7 +159,24 @@ export default {
   line-height: 1.5;
 }
 .k-block-type-audio-player-playbar {
+  display: block;
+  width: 100%;
+  max-width: 30rem;
   margin-top: 2rem;
   height: 2rem;
+}
+.k-block-type-audio-player-compact {
+  display: none;
+  margin-top: 1rem;
+}
+// the native player needs roughly 20rem to show all of its controls;
+// below that swap it for a single play/pause button
+@container audio-player-info (width < 20rem) {
+  .k-block-type-audio-player-playbar {
+    display: none;
+  }
+  .k-block-type-audio-player-compact {
+    display: block;
+  }
 }
 </style>
